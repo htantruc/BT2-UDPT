@@ -252,6 +252,37 @@ module.exports = function(app, passport) {
         res.redirect('/chat');
     });
 
+      // =============================================================================
+    // process read message ==================================================
+    // =============================================================================
+    app.post('/profile', isLoggedIn, function(req, res){
+        var user = req.param('user');
+        var date = req.param('date');
+        var isodate = new  Date(date);
+        isodate.setHours(isodate.getHours() - 7);
+
+//isodate = dateformat(isodate, "isoDateTime");
+        console.log(user);
+        console.log(isodate.toISOString());
+        
+        var idate = new Date();
+        idate = dateformat(idate, "isoDateTime");
+
+        User.find({"message_send.Date_send":{$eq:isodate}}, function(err, doc){
+            console.log(doc);
+        });
+
+        User.update({"local.email":user, "message_send.Date_send":isodate}, {$set:{"message_send.$.Date_seen":idate}}, function(err, doc){
+           console.log(doc);
+        });
+
+        User.update({"local.email":req.user.local.email, "message_rec.Date":isodate}, {$set:{"message_rec.$.read":true}}, function(err, doc){
+            console.log(doc);
+        });
+        
+        
+    });
+
 };
 
     
