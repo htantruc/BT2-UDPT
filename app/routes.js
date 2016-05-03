@@ -223,6 +223,34 @@ module.exports = function(app, passport) {
         res.render('chat.ejs', { user : req.user, message: req.flash( 'addfriendMessage')});
     });
 
+     app.post('/chat', function(req, res, done){
+        var message = req.param('message');
+        var user    = req.param('user');
+        User.findOne({'local.email': user}, function(err, doc){
+            if(err){
+                done(err);
+            } 
+            else if (!doc) //if account has been remove
+            {
+                done(null, false, req.flash('chatMessage', 'No user found.'));
+            } 
+            else 
+            {
+                var isodate = new Date();
+                isodate = dateformat(isodate, "isoDateTime");
+                console.log(isodate);
+                User.update({'local.email' : user}, {$push:{"message_rec":{"user_send":req.user.local.email,"message" :message, "Date": isodate }}}, function(err, result){
+                    console.log(result);
+                    });
+                User.update({'local.email': req.user.local.email}, {$push:{"message_send": {"user_rec":user, "message":message, "Date_send": isodate }}}, function(err, result){
+                    console.log(result);
+                });
+            }
+
+        });
+        res.redirect('/chat');
+    });
+
 // route middleware to ensure user is logged in
 function isLoggedIn(req, res, next) {
     if (req.isAuthenticated())
