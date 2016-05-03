@@ -157,7 +157,50 @@ module.exports = function(app, passport) {
             res.redirect('/profile');
         });
     });
-
+       // =============================================================================
+// process add friend ==================================================
+// =============================================================================
+    app.post('/friend', function(req, res, done){
+        var email = req.param('f-email');
+        var temp = true;
+        if (email)
+            email = email.toLowerCase();
+        User.findOne({ 'local.email' :  email }, function(err, user) {
+            if (err)
+            {
+                done(err);
+                
+            }
+            else        // if no user is found, return the message
+                if (!user)
+                {
+                     done(null, false, req.flash('addfriendMessage', 'Không tìm thấy người này.'));
+                }
+            else if (req.user.local.email === email) {
+                done(null, false, req.flash('addfriendMessage', 'Không thể thêm chính mình'));
+            }else {
+                for(var i = 0; i < req.user.friendship.length; i++)
+                {
+                    if (email === req.user.friendship[i].email)
+                    {
+                        temp= false;
+                        break;
+                    }
+                }
+                //checking has already been friend
+                if (temp) {
+                    User.update({'local.email' : req.user.local.email}, {$push:{'friendship' :{'email':email}}}, function(err, result){
+                    console.log(result);
+                    });
+                }
+                else
+                {
+                    done(null, false, req.flash('addfriendMessage', 'Đã có trong danh sách bạn'));
+                }
+            }
+            res.redirect('/friend');
+    })
+    });
 
 };
 
