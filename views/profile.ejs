@@ -19,6 +19,23 @@
 		
 	</style>
 
+	<script type="text/javascript">
+		function abc (e){
+			e.style.backgroundColor = 'white';
+			if (window.XMLHttpRequest)
+			{
+				// code for IE7+, Firefox, Chrome, Opera, Safari
+				xmlhttp=new XMLHttpRequest();
+			} else {
+				// code for IE6, IE5
+				xmlhttp=new ActiveXObject("Microsoft.XMLHTTP");
+			}
+
+			xmlhttp.open("POST", "profile", true);
+			xmlhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+			xmlhttp.send("user="+ e.cells[0].innerHTML + "&date=" + e.cells[2].innerHTML);
+		}
+	</script>
 </head>
 
 <body>
@@ -104,7 +121,7 @@
 					</tr>
 					<% for(var j=user.message_rec.length - 1; j >= 0; j--) { %>
 						<% if (!user.message_rec[j].read) {%>
-							<tr style = "background-color:#D0E9C6">
+							<tr style = "background-color:#D0E9C6" onclick="abc(this)">
 								<td><%= user.message_rec[j].user_send%></td>
 								<td><%= user.message_rec[j].message %></td>
 								<td><%= user.message_rec[j].Date %></td>
