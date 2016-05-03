@@ -15,7 +15,12 @@ var userSchema = mongoose.Schema({
         email        : String,
         name         : String
     },
-  
+    twitter          : {
+        id           : String,
+        token        : String,
+        displayName  : String,
+        username     : String
+    },
     google           : {
         id           : String,
         token        : String,
@@ -23,7 +28,27 @@ var userSchema = mongoose.Schema({
         name         : String
     },
 
-  
+    //save messages from order user
+    message_rec      : [{
+        user_send    : String,
+        message      : String, 
+        read         :{type:Boolean, default: false}, 
+        Date         : Date
+    }],
+
+    //save messages sended to order user
+    message_send     : [{
+        user_rec     : String,
+        message      : String, 
+        Date_send    : Date,
+        Date_seen    : Date
+    }],
+
+
+    // save list friend
+    friendship       : [{
+        email        : String
+    }]
 
 });
 
