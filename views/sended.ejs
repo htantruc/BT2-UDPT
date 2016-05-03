@@ -100,7 +100,19 @@
 						<td><b>Nội dung</b></td>
 						<td><b>Thời gian xem</b></td>
 					</tr>
-					
+					<% for(var j=user.message_send.length - 1; j >= 0; j--) { %>
+					 	<tr >
+							
+						<% if (!user.message_send[j].read) {%>
+							
+								<td ><%= user.message_send[j].user_rec%></td>
+								<td ><%= user.message_send[j].message %></td>
+								<td ><%= user.message_send[j].Date_seen %></td>
+							
+							<!--maessage da doc -->
+						<% } %>
+     					</tr>
+     				<% }%>
 
 			</table>
 		</div>
