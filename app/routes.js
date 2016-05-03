@@ -24,7 +24,10 @@ module.exports = function(app, passport) {
         res.redirect('/');
     });
 
-
+// SHOW FRIEND LIST=======================
+     app.get('/friend', isLoggedIn, function(req, res) {
+        res.render('friend.ejs', { user : req.user, message: req.flash( 'addfriendMessage')});
+    });
 // =============================================================================
 // AUTHENTICATE (FIRST LOGIN) ==================================================
 // =============================================================================
