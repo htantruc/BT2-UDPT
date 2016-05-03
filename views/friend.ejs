@@ -102,7 +102,12 @@
 						<td><b></b></td>
 						
 					</tr>
-					
+					<% for(var i=0; i < user.friendship.length; i++){ %>
+						<tr >
+						<td><%= user.friendship[i].email %></td>
+						<td><a href="/chat" style="float:right;"><span class="glyphicon glyphicon-plus" ></span> Gửi tin nhắn</a> </td>
+						</tr>
+     				<% }%>
 
 
 			</table>
