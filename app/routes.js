@@ -28,6 +28,13 @@ module.exports = function(app, passport) {
      app.get('/friend', isLoggedIn, function(req, res) {
         res.render('friend.ejs', { user : req.user, message: req.flash( 'addfriendMessage')});
     });
+     // =============================================================================
+    // process show message sended ==================================================
+    // =============================================================================
+    app.get('/sended',isLoggedIn, function(req, res){
+        res.render('sended.ejs', { user : req.user, message: req.flash( 'addfriendMessage')});
+    });
+
 // =============================================================================
 // AUTHENTICATE (FIRST LOGIN) ==================================================
 // =============================================================================
