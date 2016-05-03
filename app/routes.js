@@ -1,4 +1,5 @@
 var User = require('./models/user.js');
+var dateformat = require ('dateformat');
 
 module.exports = function(app, passport) {
 
@@ -212,13 +213,13 @@ module.exports = function(app, passport) {
     })
     });
 
-};
-
+    
 
 
      // =============================================================================
     // process send message ==================================================
     // =============================================================================
+
      app.get('/chat', isLoggedIn, function(req, res) {
         res.render('chat.ejs', { user : req.user, message: req.flash( 'addfriendMessage')});
     });
@@ -250,6 +251,10 @@ module.exports = function(app, passport) {
         });
         res.redirect('/chat');
     });
+
+};
+
+    
 
 // route middleware to ensure user is logged in
 function isLoggedIn(req, res, next) {
