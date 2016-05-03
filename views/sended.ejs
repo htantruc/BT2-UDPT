@@ -5,18 +5,67 @@
 	<link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.2/css/bootstrap.min.css">
 	<link rel="stylesheet" href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.min.css">
 	<style>
-	#footer{
-		background-color: 	#696969;
-		margin-top: 180px;
+		#footer{
+			background-color: 	#696969;
+			margin-top: 180px;
 
-		padding-top:20;
+			padding-top:20;
 		}
 		body{
 			background-image: url(bg.png);
 			background-size: cover;
 			width: 500;
 		}
-		</style>
+		.table-responsive {
+			min-height: .01%;
+			overflow-x: auto;
+		}
+		@media screen and (max-width: 767px) {
+			.table-responsive {
+				width: 100%;
+				margin-bottom: 15px;
+				overflow-y: hidden;
+				-ms-overflow-style: -ms-autohiding-scrollbar;
+				border: 1px solid #ddd;
+			}
+			.table-responsive > .table {
+				margin-bottom: 0;
+			}
+			.table-responsive > .table > thead > tr > th,
+			.table-responsive > .table > tbody > tr > th,
+			.table-responsive > .table > tfoot > tr > th,
+			.table-responsive > .table > thead > tr > td,
+			.table-responsive > .table > tbody > tr > td,
+			.table-responsive > .table > tfoot > tr > td {
+				white-space: nowrap;
+			}
+			.table-responsive > .table-bordered {
+				border: 0;
+			}
+			.table-responsive > .table-bordered > thead > tr > th:first-child,
+			.table-responsive > .table-bordered > tbody > tr > th:first-child,
+			.table-responsive > .table-bordered > tfoot > tr > th:first-child,
+			.table-responsive > .table-bordered > thead > tr > td:first-child,
+			.table-responsive > .table-bordered > tbody > tr > td:first-child,
+			.table-responsive > .table-bordered > tfoot > tr > td:first-child {
+				border-left: 0;
+			}
+			.table-responsive > .table-bordered > thead > tr > th:last-child,
+			.table-responsive > .table-bordered > tbody > tr > th:last-child,
+			.table-responsive > .table-bordered > tfoot > tr > th:last-child,
+			.table-responsive > .table-bordered > thead > tr > td:last-child,
+			.table-responsive > .table-bordered > tbody > tr > td:last-child,
+			.table-responsive > .table-bordered > tfoot > tr > td:last-child {
+				border-right: 0;
+			}
+			.table-responsive > .table-bordered > tbody > tr:last-child > th,
+			.table-responsive > .table-bordered > tfoot > tr:last-child > th,
+			.table-responsive > .table-bordered > tbody > tr:last-child > td,
+			.table-responsive > .table-bordered > tfoot > tr:last-child > td {
+				border-bottom: 0;
+			}
+		}
+	</style>
 </head>
 
 <body  >
@@ -47,84 +96,85 @@
 		<div class="row">
 			<div class="col-md-2 col-md-offset-1 ">
 				<div class="panel panel-default">
-				<div class="panel-heading">
-				<b class="panel-title"><span class="glyphicon glyphicon-hand-right"></span> Xin chào!!</b>
+					<div class="panel-heading">
+						<b class="panel-title"><span class="glyphicon glyphicon-hand-right"></span> Xin chào!!</b>
 
-				</div>
-				<strong >  Chào <%= user.local.email %></strong><br><br>
-				<ul>
-					<li>
-						<a href="/chat" > Gửi tin nhắn mới</a>
-					</li>
-					<li>
-						<a href="/friend" > Danh sách bạn bè</a>
-					</li>
-					<li>
-						<a href="/sended" > Tin đã gửi</a>
-					</li>
-				</ul>
+					</div>
+					<strong >  Chào <%= user.local.email %></strong><br><br>
+					<ul>
+						<li>
+							<a href="/chat" > Gửi tin nhắn mới</a>
+						</li>
+						<li>
+							<a href="/friend" > Danh sách bạn bè</a>
+						</li>
+						<li>
+							<a href="/sended" > Tin đã gửi</a>
+						</li>
+					</ul>
 
 				</div>
 				<div class="panel panel-default">
-				<div class="panel-heading">
-				<b class="panel-title"><span class="glyphicon glyphicon-phone"></span> Liên hệ:</b>
+					<div class="panel-heading">
+						<b class="panel-title"><span class="glyphicon glyphicon-phone"></span> Liên hệ:</b>
 
-				</div>
+					</div>
 
-				<ul>
-					<li>
-						<a href="https://web.facebook.com/htantruc" target="_blank"> Facebook 1</a>
-					</li>
-					<li>
-						<a href="https://web.facebook.com/nguyen.hoangminh.338" target="_blank"> Facebook 2</a>
-					</li>
-					<li>
-						<a href="http://vtweb.byethost16.com/HOME.html" target="_blank"> Trang web</a>
-					</li>
-				</ul>
+					<ul>
+						<li>
+							<a href="https://web.facebook.com/htantruc" target="_blank"> Facebook 1</a>
+						</li>
+						<li>
+							<a href="https://web.facebook.com/nguyen.hoangminh.338" target="_blank"> Facebook 2</a>
+						</li>
+						<li>
+							<a href="http://vtweb.byethost16.com/HOME.html" target="_blank"> Trang web</a>
+						</li>
+					</ul>
 
 				</div>
 			</div>
 
 			<div class="col-md-8 ">
-			
+				
 				<div class="panel panel-default">
-				<div class="panel-heading">
-				<b class="panel-title"><span class="glyphicon glyphicon-signal"></span> Danh sách tin nhắn</b>
-				<a href="/chat" style="float:right;"><span class="glyphicon glyphicon-plus" ></span> Gửi tin nhắn mới</a> 
-				</div>
-
-				<table class="table  table-hover table-bordered ">
-					<tr>
-						<td><b>Người nhận</b></td>
-						<td><b>Nội dung</b></td>
-						<td><b>Thời gian xem</b></td>
-					</tr>
-					<% for(var j=user.message_send.length - 1; j >= 0; j--) { %>
-					 	<tr >
-							
-						<% if (!user.message_send[j].read) {%>
-							
+					<div class="panel-heading">
+						<b class="panel-title"><span class="glyphicon glyphicon-signal"></span> Danh sách tin nhắn</b>
+						<a href="/chat" style="float:right;"><span class="glyphicon glyphicon-plus" ></span> Gửi tin nhắn mới</a> 
+					</div>
+					<div class="table-responsive">
+						<table class="table  table-hover table-bordered ">
+							<tr>
+								<td><b>Người nhận</b></td>
+								<td><b>Nội dung</b></td>
+								<td><b>Thời gian xem</b></td>
+							</tr>
+							<% for(var j=user.message_send.length - 1; j >= 0; j--) { %>
+							<tr >
+								
+								<% if (!user.message_send[j].read) {%>
+								
 								<td ><%= user.message_send[j].user_rec%></td>
 								<td ><%= user.message_send[j].message %></td>
 								<td ><%= user.message_send[j].Date_seen %></td>
-							
-							<!--maessage da doc -->
-						<% } %>
-     					</tr>
-     				<% }%>
+								
+								<!--maessage da doc -->
+								<% } %>
+							</tr>
+							<% }%>
 
-			</table>
-		</div>
+						</table>
+					</div>
+				</div>
+			</div>
 		</div>
 	</div>
-</div>
-<div id="footer">
-<div class="container">
-<hr>
-	<br>	<p style="color: white;">Powered by 1312653-1312696</p>
-	<br>
-</div>
-</div>
+	<div id="footer">
+		<div class="container">
+			<hr>
+			<br>	<p style="color: white;">Powered by 1312653-1312696</p>
+			<br>
+		</div>
+	</div>
 </body>
 </html>
