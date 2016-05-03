@@ -1,0 +1,146 @@
+<!doctype html>
+<html>
+<head>
+	<title>Danh sách tin nhắn</title>
+	<link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.2/css/bootstrap.min.css">
+	<link rel="stylesheet" href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.min.css">
+	<script src="http://code.jquery.com/jquery-1.9.1.js"></script>
+	<style>
+	#footer{
+		background-color: 	#696969;
+		margin-top: 180px;
+
+		padding-top:20;
+		}
+		body{
+			background-image: url(bg.png);
+			background-size: cover;
+			width: 500;
+		
+	</style>
+
+	<script type="text/javascript">
+		function abc (e){
+			e.style.backgroundColor = 'white';
+			if (window.XMLHttpRequest)
+			{
+				// code for IE7+, Firefox, Chrome, Opera, Safari
+				xmlhttp=new XMLHttpRequest();
+			} else {
+				// code for IE6, IE5
+				xmlhttp=new ActiveXObject("Microsoft.XMLHTTP");
+			}
+
+			xmlhttp.open("POST", "profile", true);
+			xmlhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+			xmlhttp.send("user="+ e.cells[0].innerHTML + "&date=" + e.cells[2].innerHTML);
+		}
+	</script>
+</head>
+
+<body>
+	<div id="header">
+		<nav class="navbar navbar-inverse navbar-static-top" role="navigation">
+			<a class="navbar-brand" href="/">MY WEBCHAT</a>
+			<ul class="nav navbar-nav">
+				<li class="active">
+					<a  href ="/profile">Danh sách tin nhắn </a>
+				</li>
+				<li>
+					<a  href ="/friend">Danh sách bạn </a>
+				</li>
+				<li>
+					<a href ="/sended">Tin đã gửi </a>
+				</li>
+				<li style="margin-left: 400px;color: white;">
+					<a> Tài khoản của bạn: <%= user.local.email %></a>
+				</li>
+				<li>
+					<a class="nav navbar-nav" href="/logout">Thoát</a>
+				</li>
+			</ul>
+		</nav>
+	</div>
+	<div id="container">
+
+		<div class="row">
+			<div class="col-md-2 col-md-offset-1 ">
+				<div class="panel panel-default">
+				<div class="panel-heading">
+				<b class="panel-title"><span class="glyphicon glyphicon-hand-right"></span> Xin chào!!</b>
+
+				</div>
+				<strong >  Chào <%= user.local.email %></strong><br><br>
+				<ul>
+					<li>
+						<a href="/chat" > Gửi tin nhắn mới</a>
+					</li>
+					<li>
+						<a href="/friend" > Danh sách bạn bè</a>
+					</li>
+					<li>
+						<a href="/sended" > Tin đã gửi</a>
+					</li>
+				</ul>
+
+				</div>
+				<div class="panel panel-default">
+				<div class="panel-heading">
+				<b class="panel-title"><span class="glyphicon glyphicon-phone"></span> Liên hệ:</b>
+
+				</div>
+
+				<ul>
+					<li>
+						<a href="https://web.facebook.com/htantruc" target="_blank"> Facebook 1</a>
+					</li>
+					<li>
+						<a href="https://web.facebook.com/nguyen.hoangminh.338" target="_blank"> Facebook 2</a>
+					</li>
+					<li>
+						<a href="http://vtweb.byethost16.com/HOME.html" target="_blank"> Trang web</a>
+					</li>
+				</ul>
+
+				</div>
+			</div>
+
+			<div class="col-md-8 ">
+			
+				<div class="panel panel-default">
+				<div class="panel-heading">
+				<b class="panel-title"><span class="glyphicon glyphicon-signal"></span> Danh sách tin nhắn</b>
+				<a href="/chat" style="float:right;"><span class="glyphicon glyphicon-plus" ></span> Gửi tin nhắn mới</a> 
+				</div>
+
+				<table class="table  table-hover table-bordered ">
+					<tr>
+						<th><b>Người gửi</b></th>
+						<th><b>Nội dung</b></th>
+						<th><b>Thời gian</b></th>
+					</tr>
+					<% for(var j=user.message_rec.length - 1; j >= 0; j--) { %>
+						<% if (!user.message_rec[j].read) {%>
+							<tr style = "background-color:#D0E9C6" onclick="abc(this)">
+								<td><%= user.message_rec[j].user_send%></td>
+								<td><%= user.message_rec[j].message %></td>
+								<td><%= user.message_rec[j].Date %></td>
+							</tr>
+							<!--maessage da doc -->
+						<% } %>
+     				<% }%>
+
+			</table>
+		</div>
+		</div>
+	</div>
+</div>
+<div id="footer">
+<div class="container">
+<hr>
+	<br>	<p style="color: white;">Powered by 1312653-1312696</p>
+	<br>
+</div>
+</div>
+</body>
+</html>
