@@ -5,7 +5,7 @@
 Danh sách sinh viên: **Huỳnh Tấn Trực - 1312653**
                      **Trần Quang Việt - 1312696**
 
-URL: **Insert your Heroku URL here**
+URL: **webchat-bt2.herokuapp.com**
 
 ## Chức năng
 
