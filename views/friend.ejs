@@ -68,7 +68,7 @@
 		</style>
 
 		<script type="text/javascript">
-		function remove (x){
+		function remove_fr (x){
 			if (window.XMLHttpRequest)
 			{
 				// code for IE7+, Firefox, Chrome, Opera, Safari
@@ -172,7 +172,7 @@
 					<% for(var i=0; i < user.friendship.length; i++){ %>
 						<tr >
 						<td><%= user.friendship[i].email %></td>
-						<td onclick="remove('<%= user.friendship[i].email %>')"><a style="float:right;"><span class="glyphicon glyphicon-plus" ></span> Xoá</a> </td>
+						<td onclick="remove_fr('<%= user.friendship[i].email %>')"><a style="float:right;"><span class="glyphicon glyphicon-plus" ></span> Xoá</a> </td>
 						<td><a href="/chat" style="float:right;"><span class="glyphicon glyphicon-plus" ></span> Gửi tin nhắn</a> </td>
 						</tr>
      				<% }%>
