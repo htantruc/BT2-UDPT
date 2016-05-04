@@ -78,7 +78,7 @@
 				xmlhttp=new ActiveXObject("Microsoft.XMLHTTP");
 			}
 
-			xmlhttp.open("POST", "block_friend", true);
+			xmlhttp.open("POST", "remove_friend", true);
 			xmlhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
 			xmlhttp.send("user="+ x);
 			location.reload();
