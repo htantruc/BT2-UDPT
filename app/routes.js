@@ -315,6 +315,20 @@ module.exports = function(app, passport) {
         res.redirect('/friend');
     });
 
+     //process unblock friend
+    app.post('/unblock_friend', isLoggedIn, function(req, res, done){
+        var user = req.param('user');
+        User.update({'local.email':req.user.local.email, 'friendship.email':user}, {$set:{"friendship.$.isblocked":false}}, function(err, doc){
+            if (err)
+               done(err);
+            else 
+                console.log(doc);
+        });
+
+       console.log(user);
+        
+        res.redirect('/friend');
+    });
 
 
 };
