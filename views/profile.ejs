@@ -68,7 +68,7 @@
 
 	<script type="text/javascript">
 		function capnhat (e){
-			e.style.backgroundColor = 'white';
+			
 			if (window.XMLHttpRequest)
 			{
 				// code for IE7+, Firefox, Chrome, Opera, Safari
@@ -81,6 +81,7 @@
 			xmlhttp.open("POST", "read_message", true);
 			xmlhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
 			xmlhttp.send("user="+ e.cells[0].innerHTML + "&date=" + e.cells[2].innerHTML);
+			e.style.backgroundColor = 'white';
 		}
 	</script>
 </head>
