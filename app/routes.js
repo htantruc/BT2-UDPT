@@ -283,6 +283,23 @@ module.exports = function(app, passport) {
         
     });
 
+     // =============================================================================
+    // process remove friend ==================================================
+    // =============================================================================
+
+    app.post('/remove_friend', function(req, res, done){
+        var user = req.param('user');
+        console.log(user);
+        User.update({'local.email':req.user.local.email}, {$pull:{'friendship': {'email':user}}}, function(err, doc){
+            if (err)
+                done(err);
+            else
+                console.log(doc);
+        });
+        res.redirect('/friend');
+    });
+
+
 };
 
     
