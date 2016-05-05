@@ -221,12 +221,13 @@ module.exports = function(app, passport) {
     // =============================================================================
 
      app.get('/chat', isLoggedIn, function(req, res) {
-        res.render('chat.ejs', { user : req.user, message: req.flash( 'addfriendMessage')});
+        res.render('chat.ejs', { user : req.user, message: req.flash('chatMessage')});
     });
 
      app.post('/chat', function(req, res, done){
         var message = req.param('message');
         var user    = req.param('user');
+        var temp = true;
         User.findOne({'local.email': user}, function(err, doc){
             if(err){
                 done(err);
@@ -237,19 +238,34 @@ module.exports = function(app, passport) {
             } 
             else 
             {
-                var isodate = new Date();
-                isodate = dateformat(isodate, "isoDateTime");
-                console.log(isodate);
-                User.update({'local.email' : user}, {$push:{"message_rec":{"user_send":req.user.local.email,"message" :message, "Date": isodate }}}, function(err, result){
-                    console.log(result);
-                    });
-                User.update({'local.email': req.user.local.email}, {$push:{"message_send": {"user_rec":user, "message":message, "Date_send": isodate }}}, function(err, result){
-                    console.log(result);
-                });
-            }
+                 for(var i = 0; i < doc.friendship.length; i++)
+                {
+                    if (req.user.local.email === doc.friendship[i].email && doc.friendship[i].isblocked)
+                    {
 
+                        temp= false;
+                        done(null, false, req.flash('chatMessage', 'is blocked'));
+                        break;
+                    }
+                }
+
+                if (temp)
+                    {
+                    var isodate = new Date();
+                    isodate = dateformat(isodate, "isoDateTime");
+                    console.log(isodate);
+                    User.update({'local.email' : user}, {$push:{"message_rec":{"user_send":req.user.local.email,"message" :message, "Date": isodate }}}, function(err, result){
+                        console.log(result);
+                        });
+                    User.update({'local.email': req.user.local.email}, {$push:{"message_send": {"user_rec":user, "message":message, "Date_send": isodate }}}, function(err, result){
+                        console.log(result);
+                    });
+                }
+                     
+            }
+            res.redirect('/chat');
         });
-        res.redirect('/chat');
+        
     });
 
       // =============================================================================
