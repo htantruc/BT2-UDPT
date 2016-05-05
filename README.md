@@ -1,11 +1,15 @@
+<<<<<<< HEAD
 ﻿# Homework 2 - *Name of App*
+=======
+# Homework 2 - *Webchat*
+>>>>>>> release-4.0
 
 **Webchat** Đây là trang web cho phép người dùng gửi tin nhắn. Thời gian nộp: 0h ngày 27/4.
 
 Danh sách sinh viên: **Huỳnh Tấn Trực - 1312653**
                      **Trần Quang Việt - 1312696**
 
-URL: **Insert your Heroku URL here**
+URL: **https://chat-bt2.herokuapp.com/**
 
 ## Chức năng
 
@@ -25,10 +29,10 @@ Danh sách chức năng **phụ**:
 
 * [ ] Người dùng có thể gửi hình ảnh đính kèm theo thông điệp.
 * [ ] Người dùng có thể gửi tin nhắn đến nhiều người dùng cùng lúc.
-* [ ] Người dùng có thể đăng nhập với Facebook.
-* [ ] Người dùng có thể block người khác. Sau khi block, người dùng sẽ không nhận được tin nhắn từ người bị block gửi nữa.
-* [ ] Người dùng có thể xóa người dùng khác ra khỏi danh sách bạn.
-* [ ] Người dùng có thể unblock người dùng khác.
+* [x] Người dùng có thể đăng nhập với Facebook.
+* [x] Người dùng có thể block người khác. Sau khi block, người dùng sẽ không nhận được tin nhắn từ người bị block gửi nữa.
+* [x] Người dùng có thể xóa người dùng khác ra khỏi danh sách bạn.
+* [x] Người dùng có thể unblock người dùng khác.
 * [ ] Khi người dùng kéo xuống cuối trang, các tin nhắn tiếp theo sẽ tự động hiển thị hoặc có nút nhấn "Xem thêm tin nhắn" để nạp thêm danh sách tin nhắn.
 * [ ] Người dùng sẽ nhận được email thông báo khi họ nhận được tin nhắn cùng với link để xem tin nhắn.
 * [ ] Người dùng sẽ nhận được email khi người nhận đã đọc tin nhắn.
@@ -41,11 +45,12 @@ Các chuẩn đầu ra cần thực hiện:
 * [x] Git theo Feature Branch Workflow
 * [ ] Git theo Feature Branch Workflow có Pull Request
 * [x] Git theo Gitflow Workflow
+
 ## Video Walkthrough
 
 Here's a walkthrough of implemented user stories:
 
-![Video Walkthrough](relative-path-to-your-gif-file-on-github-or-absolute-path-to-file-on-imgur-or-youtube)
+![Video Walkthrough](Demoweb.gif)
 
 GIF created with [LiceCap](http://www.cockos.com/licecap/).
 
