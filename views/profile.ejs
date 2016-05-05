@@ -67,7 +67,7 @@
 	</style>
 
 	<script type="text/javascript">
-		function capnhat (e){
+		function capnhat (e, user, date){
 			e.style.backgroundColor = 'white';
 			if (window.XMLHttpRequest)
 			{
@@ -80,7 +80,7 @@
 
 			xmlhttp.open("POST", "read_message", true);
 			xmlhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-			xmlhttp.send("user="+ e.cells[0].innerHTML + "&date=" + e.cells[2].innerHTML);
+			xmlhttp.send("user="+ user + "&date=" + date);
 		}
 	</script>
 </head>
@@ -168,7 +168,7 @@
 					</tr>
 					<% for(var j=user.message_rec.length - 1; j >= 0; j--) { %>
 						<% if (!user.message_rec[j].read) {%>
-							<tr style = "background-color:#D0E9C6" onclick="capnhat(this)">
+							<tr style = "background-color:#D0E9C6" onclick="capnhat(this, '<%= user.message_rec[j].user_send%>', '<%= user.message_rec[j].Date%>')">
 								<td><%= user.message_rec[j].user_send%></td>
 								<td><%= user.message_rec[j].message %></td>
 								<td><%= user.message_rec[j].Date %></td>
