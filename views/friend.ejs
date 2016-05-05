@@ -83,6 +83,38 @@
 			xmlhttp.send("user="+ x);
 			location.reload();
 		}
+
+		function block_fr (x){
+			if (window.XMLHttpRequest)
+			{
+				// code for IE7+, Firefox, Chrome, Opera, Safari
+				xmlhttp=new XMLHttpRequest();
+			} else {
+				// code for IE6, IE5
+				xmlhttp=new ActiveXObject("Microsoft.XMLHTTP");
+			}
+
+			xmlhttp.open("POST", "block_friend", true);
+			xmlhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+			xmlhttp.send("user="+ x);
+			location.reload();
+		}
+
+		function unblock_fr (x){
+			if (window.XMLHttpRequest)
+			{
+				// code for IE7+, Firefox, Chrome, Opera, Safari
+				xmlhttp=new XMLHttpRequest();
+			} else {
+				// code for IE6, IE5
+				xmlhttp=new ActiveXObject("Microsoft.XMLHTTP");
+			}
+
+			xmlhttp.open("POST", "unblock_friend", true);
+			xmlhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+			xmlhttp.send("user="+ x);
+			location.reload();
+		}
 	</script>
 </head>
 
@@ -170,11 +202,35 @@
 						
 					</tr>
 					<% for(var i=0; i < user.friendship.length; i++){ %>
+						<% if (!user.friendship[i].isblocked) {%>
 						<tr >
 						<td><%= user.friendship[i].email %></td>
+						<td onclick="block_fr('<%= user.friendship[i].email %>')"><a style="float:right;"><span class="glyphicon glyphicon-plus" ></span> Chặn</a> </td>
 						<td onclick="remove_fr('<%= user.friendship[i].email %>')"><a style="float:right;"><span class="glyphicon glyphicon-plus" ></span> Xoá</a> </td>
 						<td><a href="/chat" style="float:right;"><span class="glyphicon glyphicon-plus" ></span> Gửi tin nhắn</a> </td>
 						</tr>
+						<% } %>
+     				<% }%>
+
+
+			</table>
+
+
+			<table class="table  table-hover table-striped">
+
+					<tr>
+						<td><b>Email bị block</b></td>
+						<td><b></b></td>
+						
+					</tr>
+					<% for(var i=0; i < user.friendship.length; i++){ %>
+						<% if (user.friendship[i].isblocked) {%>
+						<tr >
+						<td><%= user.friendship[i].email %></td>
+						<td onclick="unblock_fr('<%= user.friendship[i].email %>')"><a style="float:right;"><span class="glyphicon glyphicon-plus" ></span> Bỏ Chặn</a> </td>
+						<td onclick="remove_fr('<%= user.friendship[i].email %>')"><a style="float:right;"><span class="glyphicon glyphicon-plus" ></span> Xoá</a> </td>
+						</tr>
+						<% } %>
      				<% }%>
 
 
