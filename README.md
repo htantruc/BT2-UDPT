@@ -1,11 +1,11 @@
-﻿# Homework 2 - *Webchat*
+﻿# Homework 2 - *Name of App*
 
 **Webchat** Đây là trang web cho phép người dùng gửi tin nhắn. Thời gian nộp: 0h ngày 27/4.
 
 Danh sách sinh viên: **Huỳnh Tấn Trực - 1312653**
                      **Trần Quang Việt - 1312696**
 
-URL: **webchat-bt2.herokuapp.com**
+URL: **Insert your Heroku URL here**
 
 ## Chức năng
 
