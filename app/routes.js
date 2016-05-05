@@ -255,7 +255,7 @@ module.exports = function(app, passport) {
       // =============================================================================
     // process read message ==================================================
     // =============================================================================
-    app.post('/profile', isLoggedIn, function(req, res){
+    app.post('/read_message', isLoggedIn, function(req, res){
         var user = req.param('user');
         var date = req.param('date');
         var isodate = new  Date(date);
@@ -279,6 +279,7 @@ module.exports = function(app, passport) {
         User.update({"local.email":req.user.local.email, "message_rec.Date":isodate}, {$set:{"message_rec.$.read":true}}, function(err, doc){
             console.log(doc);
         });
+         res.redirect('/profile');
         
         
     });

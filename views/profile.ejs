@@ -78,7 +78,7 @@
 				xmlhttp=new ActiveXObject("Microsoft.XMLHTTP");
 			}
 
-			xmlhttp.open("POST", "profile", true);
+			xmlhttp.open("POST", "read_message", true);
 			xmlhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
 			xmlhttp.send("user="+ e.cells[0].innerHTML + "&date=" + e.cells[2].innerHTML);
 		}
