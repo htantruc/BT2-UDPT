@@ -300,6 +300,22 @@ module.exports = function(app, passport) {
         res.redirect('/friend');
     });
 
+     //process block friend
+    app.post('/block_friend', isLoggedIn, function(req, res, done){
+        var user = req.param('user');
+        User.update({'local.email':req.user.local.email, 'friendship.email':user}, {$set:{"friendship.$.isblocked":true}}, function(err, doc){
+            if (err)
+               done(err);
+            else 
+                console.log(doc);
+        });
+
+       console.log(user);
+        
+        res.redirect('/friend');
+    });
+
+
 
 };
 
