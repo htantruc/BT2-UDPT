@@ -47,7 +47,8 @@ var userSchema = mongoose.Schema({
 
     // save list friend
     friendship       : [{
-        email        : String
+        email        : String,
+        isblocked    : {type: Boolean, default:false}
     }]
 
 });
